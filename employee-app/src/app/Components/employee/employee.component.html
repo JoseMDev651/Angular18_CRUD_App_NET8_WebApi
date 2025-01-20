@@ -46,22 +46,55 @@
                 <h4 class="modal-title">Add Employee</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
             </div>
+            <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="text" formControlName="name" name="name" class="form-control"
+                                placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <input type="text" formControlName="email" name="email" class="form-control"
+                                placeholder="Email">
+                        </div>
+                        <div class="col-6">
+                            <input type="text" formControlName="mobile" name="mobile" class="form-control"
+                                placeholder="Mobile">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <input type="number" formControlName="age" name="age" class="form-control"
+                                placeholder="Age">
+                        </div>
+                        <div class="col-6">
+                            <input type="number" formControlName="salary" name="salary" class="form-control"
+                                placeholder="Salary">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="form-group form-check">
+                                <input type="checkbox" formControlName="status" name="status" class="form-check-input"
+                                    placeholder="Status">
+                                <label> Active ?</label>
+                            </div>
 
-            <!-- Modal body -->
-            <div class="modal-body">
-                <div class="row">
-
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                    (click)="closeModal()">Save</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-                    (click)="closeModal()">Close</button>
-            </div>
-
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" [disabled]="this.employeeForm.invalid" class="btn btn-primary"
+                        data-bs-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                        (click)="closeModal()">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

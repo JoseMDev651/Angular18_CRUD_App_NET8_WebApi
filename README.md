@@ -51,4 +51,13 @@
 		- app -> employee.component.html
 	- Add Employee button functionality
 		- Note: search in browser Bootstrap 5 modal w3schools (Open Windows with css)
+	- employee.component.ts
+		- imports: [ReactiveFormsModule]
+  		- Add new FormGroup
+		- set FormState
+	- services
+		- EmployeeService
+			- apiUrl
+			- inject http
+		
 	
