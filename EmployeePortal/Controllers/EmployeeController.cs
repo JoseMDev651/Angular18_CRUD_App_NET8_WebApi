@@ -23,10 +23,23 @@ namespace EmployeePortal.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddEmployee(Employee vm) 
-        { 
+        public async Task<ActionResult> AddEmployee(Employee vm)
+        {
             await emp.SaveEmployee(vm);
             return Ok(vm);
+        }
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateEmployee(int id, [FromBody] Employee vm)
+        {
+            await emp.UpdateEmployee(id, vm);
+            return Ok(vm);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteEmployee(int id)
+        {
+            await emp.DeleteEmployee(id);
+            return Ok();
         }
     }
 }

@@ -59,5 +59,31 @@
 		- EmployeeService
 			- apiUrl
 			- inject http
+			- getAllEmployees
+	- employee.component.ts
+			- mployeeList: Employee[] = [];
+  			- empService = inject(EmployeeService);
+	- Subscribe Employee service (employee.services.ts)
+			- getAllEmployees()
+	- employee.components.ts (Subscribe)
+			-getEmployees()
+	- employee.component.html
+		- @for (item of employeeList; track $index) (show data in body)
+	- Models - employee.ts (interfce)
+		- Define o¡bject employee properties
+	- Services - employee.services.ts
+		- Add employee
+			- OnSubmit
+	- Edit-Update
+		- Visual Studio
+		- EmployeeRepository- UpdateEmployee(int id, Employee obj)
+	- Delete
+		- EmployeeRepository - DeleteEmployee(int id)
+		- EmployeeControllers
+	- VS Code
+		- employee.services.ts
+			- updateEmployee
+			- deleteEmployee
+			
 		
 	

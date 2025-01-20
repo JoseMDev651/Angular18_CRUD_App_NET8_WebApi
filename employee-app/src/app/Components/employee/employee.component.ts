@@ -1,5 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Employee } from '../../Models/employee';
+import { EmployeeService } from '../../Services/employee.service';
 
 @Component({
   selector: 'app-employee',
@@ -10,7 +12,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class EmployeeComponent implements OnInit {
   @ViewChild('myModal') model: ElementRef | undefined;
-
+  employeeList: Employee[] = [];
+  empService = inject(EmployeeService);
   employeeForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder) {
@@ -19,6 +22,7 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.setFormState();
+    this.getEmployees();
   }
 
   openModal() {
@@ -34,8 +38,25 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
+  getEmployees() {
+    this.empService.getAllEmployees().subscribe((res) => {
+      this.employeeList = res;
+    })
+  }
+  formValues: any;
   onSubmit() {
     console.log(this.employeeForm.value);
+    if (this.employeeForm.invalid) {
+      alert('Please fill all fields.')
+      return;
+    }
+    this.formValues = this.employeeForm.value;
+    this.empService.addEmployee(this.formValues).subscribe((res) => {
+      alert('Employee added succesfully.')
+      this.getEmployees();
+      this.employeeForm.reset();
+      this.closeModal();
+    })
   }
 
   setFormState() {
