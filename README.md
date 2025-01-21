@@ -84,6 +84,11 @@
 		- employee.services.ts
 			- updateEmployee
 			- deleteEmployee
+	- employee.components.ts
+		- onDelete()
+	- employee.component.html
+		- button delete -> onDelete()
+		- button update -> onEdit()
 			
 		
 	

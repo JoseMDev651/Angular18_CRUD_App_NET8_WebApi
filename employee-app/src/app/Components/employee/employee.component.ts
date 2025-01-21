@@ -59,6 +59,21 @@ export class EmployeeComponent implements OnInit {
     })
   }
 
+  onEdit(Employee: Employee) {
+    this.openModal();
+    this.employeeForm.patchValue(Employee);
+  }
+
+  onDelete(id: number) {
+    const isConfirm = confirm("Are you sure you want to delete this employee.");
+    if (isConfirm) {
+      this.empService.deleteEmployee(id).subscribe((res) => {
+        alert("Employee deleted succesfully.");
+        this.getEmployees();
+      });
+    }
+  }
+
   setFormState() {
     this.employeeForm = this.fb.group({
       id: [0],
